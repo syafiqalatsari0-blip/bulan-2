@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Dien Syafiq - Space RGB Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000011;
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Space Background with Stars */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #fff, transparent),
+                linear-gradient(45deg, #000011 0%, #000033 25%, #000055 50%, #000033 75%, #000011 100%);
+            background-repeat: repeat;
+            background-size: 200px 100px, 300px 200px, 150px 150px, 250px 180px, 180px 120px, 100% 100%;
+            animation: starfield 20s linear infinite, spaceShift 15s ease-in-out infinite;
+            z-index: -2;
+        }
+
+        @keyframes starfield {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+
+        @keyframes spaceShift {
+            0%, 100% { 
+                background: linear-gradient(45deg, #000011 0%, #000033 25%, #000055 50%, #000033 75%, #000011 100%);
+            }
+            25% { 
+                background: linear-gradient(45deg, #110000 0%, #330000 25%, #550000 50%, #330000 75%, #110000 100%);
+            }
+            50% { 
+                background: linear-gradient(45deg, #001100 0%, #003300 25%, #005500 50%, #003300 75%, #001100 100%);
+            }
+            75% { 
+                background: linear-gradient(45deg, #000011 0%, #000033 25%, #000055 50%, #000033 75%, #000011 100%);
+            }
+        }
+
+        /* RGB Nebula Overlay */
+        .nebula-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 10% 20%, rgba(255, 0, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%, rgba(0, 255, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 90%, rgba(0, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 30%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            animation: nebulaDrift 25s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes nebulaDrift {
+            0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+            33% { opacity: 1; transform: scale(1.1) rotate(120deg); }
+            66% { opacity: 0.8; transform: scale(0.9) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+            animation: heroGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { 
+                box-shadow: 0 0 40px rgba(255, 0, 0, 0.3), 
+                            0 0 80px rgba(0, 255, 0, 0.2), 
+                            0 0 120px rgba(0, 0, 255, 0.1);
+            }
+            33% { 
+                box-shadow: 0 0 40px rgba(0, 255, 0, 0.3), 
+                            0 0 80px rgba(0, 0, 255, 0.2), 
+                            0 0 120px rgba(255, 0, 0, 0.1);
+            }
+            66% { 
+                box-shadow: 0 0 40px rgba(0, 0, 255, 0.3), 
+                            0 0 80px rgba(255, 0, 0, 0.2), 
+                            0 0 120px rgba(0, 255, 0, 0.1);
+            }
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            animation: rotate 8s linear infinite;
+            z-index: -1;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: rgba(0, 0, 17, 0.9);
+            border-radius: 28px;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes textShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4em;
+            color: #cccccc;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wave-emoji {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+            font-size: 1.2em;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .skill-category {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: scanLine 3s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .frontend-skills {
+            border-color: #ff0000;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+            animation: redPulse 4s ease-in-out infinite;
+        }
+
+        .backend-skills {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            animation: greenPulse 4s ease-in-out infinite 1.3s;
+        }
+
+        .database-skills {
+            border-color: #0000ff;
+            box-shadow: 0 0 30px rgba(0, 0, 255, 0.3);
+            animation: bluePulse 4s ease-in-out infinite 2.6s;
+        }
+
+        @keyframes redPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(255, 0, 0, 0.6); }
+        }
+
+        @keyframes greenPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 0, 0.6); }
+        }
+
+        @keyframes bluePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 0, 255, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(0, 0, 255, 0.6); }
+        }
+
+        .skill-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .frontend-icon {
+            background: radial-gradient(circle, #ff0000, #ff6666);
+            color: #fff;
+            text-shadow: 0 0 10px #ff0000;
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        .backend-icon {
+            background: radial-gradient(circle, #00ff00, #66ff66);
+            color: #fff;
+            text-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .database-icon {
+            background: radial-gradient(circle, #0000ff, #6666ff);
+            color: #fff;
+            text-shadow: 0 0 10px #0000ff;
+            box-shadow: 0 0 20px #0000ff;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 12px 0;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 4px solid;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .frontend-item { border-left-color: #ff0000; }
+        .backend-item { border-left-color: #00ff00; }
+        .database-item { border-left-color: #0000ff; }
+
+        /* Framework Cards */
+        .frameworks-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .framework-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .framework-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.8s;
+        }
+
+        .framework-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .framework-card:hover {
+            transform: translateY(-15px) scale(1.03);
+        }
+
+        .react-card {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            animation: redPulse 3s ease-in-out infinite;
+        }
+
+        .vue-card {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            animation: greenPulse 3s ease-in-out infinite 1s;
+        }
+
+        .angular-card {
+            border-color: #0000ff;
+            box-shadow: 0 0 20px rgba(0, 0, 255, 0.3);
+            animation: bluePulse 3s ease-in-out infinite 2s;
+        }
+
+        .framework-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .react-title { 
+            color: #ff0000; 
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .vue-title { 
+            color: #00ff00; 
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .angular-title { 
+            color: #0000ff; 
+            text-shadow: 0 0 10px #0000ff;
+        }
+
+        .framework-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.5em;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .react-icon { 
+            background: radial-gradient(circle, #ff0000, #ff6666);
+            box-shadow: 0 0 20px #ff0000;
+        }
+        .vue-icon { 
+            background: radial-gradient(circle, #00ff00, #66ff66);
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .angular-icon { 
+            background: radial-gradient(circle, #0000ff, #6666ff);
+            box-shadow: 0 0 20px #0000ff;
+        }
+
+        .functions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .function-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .function-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .react-item { 
+            border-left-color: #ff0000;
+            box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.1);
+        }
+        .vue-item { 
+            border-left-color: #00ff00;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+        .angular-item { 
+            border-left-color: #0000ff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 255, 0.1);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 25px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 0, 0.1) 0%, 
+                rgba(0, 255, 0, 0.1) 50%, 
+                rgba(0, 0, 255, 0.1) 100%);
+            animation: quoteBg 6s ease-in-out infinite;
+        }
+
+        @keyframes quoteBg {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .quote-text {
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .rocket-emoji {
+            display: inline-block;
+            animation: rocket 2s ease-in-out infinite;
+            font-size: 1.2em;
+        }
+
+        @keyframes rocket {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Action Button */
+        .action-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .space-button {
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            background-size: 400% 400%;
+            animation: spaceButtonBg 3s ease infinite;
+            color: #fff;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes spaceButtonBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .space-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .space-button:hover::before {
+            left: 100%;
+        }
+
+        .space-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .skills-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-category {
+                padding: 20px;
+            }
+
+            .frameworks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="space-background"></div>
+    <div class="nebula-overlay"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Muhammad Dien Syafiq</h1>
+            <p class="hero-subtitle">✨ Web Development Portfolio ✨</p>
+            <div class="hero-description">
+                <p>Halo <span class="wave-emoji">👋</span>, saya <strong>Muhammad Dien Syafiq</strong>, seorang pembelajar yang sedang mendalami <strong>Web Development</strong> di galaksi digital yang tak terbatas.</p>
+                <br>
+                <p>Saya percaya bahwa setiap baris kode adalah langkah kecil menuju karya besar. <span class="rocket-emoji">🚀</span> Portofolio ini saya buat sebagai dokumentasi perjalanan saya di dunia programming yang penuh dengan kemungkinan tak terbatas.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <div class="skill-category frontend-skills">
+                <div class="skill-title">
+                    <div class="skill-icon frontend-icon">🎨</div>
+                    <span style="color: #ff0000; text-shadow: 0 0 10px #ff0000;">Frontend Development</span>
+                </div>
+                <ul class="skill-list">
+                    <li class="skill-item frontend-item">HTML - Struktur dasar dari setiap website</li>
+                    <li class="skill-item frontend-item">CSS - Styling dan animasi yang memukau</li>
+                    <li class="skill-item frontend-item">JavaScript - Interaktivitas dan logika frontend</li>
+                    <li class="skill-item frontend-item">React - Library untuk membangun UI yang modern</li>
+                </ul>
+            </div>
+
+            <div class="skill-category backend-skills">
+                <div class="skill-title">
+                    <div class="skill-icon backend-icon">⚙️</div>
+                    <span style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">Backend Development</span>
+                </div>
+                <ul class="skill-list">
+                    <li class="skill-item backend-item">Node.js - Runtime JavaScript di server</li>
+                    <li class="skill-item backend-item">Express - Framework web yang cepat dan minimal</li>
+                    <li class="skill-item backend-item">API Development - Membangun RESTful APIs</li>
+                    <li class="skill-item backend-item">Server Management - Mengelola server dan deployment</li>
+                </ul>
+            </div>
+
+            <div class="skill-category database-skills">
+                <div class="skill-title">
+                    <div class="skill-icon database-icon">🗃️</div>
+                    <span style="color: #0000ff; text-shadow: 0 0 10px #0000ff;">Database Design</span>
+                </div>
+                <ul class="skill-list">
+                    <li class="skill-item database-item">MySQL - Database relasional yang powerful</li>
+                    <li class="skill-item database-item">MongoDB - Database NoSQL yang fleksibel</li>
+                    <li class="skill-item database-item">Database Modeling - Merancang struktur data yang efisien</li>
+                    <li class="skill-item database-item">Query Optimization - Mengoptimalkan performa database</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Frameworks Section -->
+        <section class="frameworks-section">
+            <h2 class="section-title">🌌 JavaScript Frameworks Journey</h2>
+            <div class="frameworks-grid">
+                <div class="framework-card react-card">
+                    <div class="framework-title react-title">
+                        <div class="framework-icon react-icon">⚛️</div>
+                        React.js
+                    </div>
+                    <ul class="functions-list">
+                        <li class="function-item react-item">
+                            Membuat UI yang interaktif dengan Virtual DOM yang efisien
+                        </li>
+                        <li class="function-item react-item">
+                            Digunakan oleh perusahaan galaksi seperti Facebook, Netflix, Airbnb
+                        </li>
+                        <li class="function-item react-item">
+                            Component-based architecture untuk pengembangan yang modular
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="framework-card vue-card">
+                    <div class="framework-title vue-title">
+                        <div class="framework-icon vue-icon">💚</div>
+                        Vue.js
+                    </div>
+                    <ul class="functions-list">
+                        <li class="function-item vue-item">
+                            Framework progresif dengan learning curve yang gentle
+                        </li>
+                        <li class="function-item vue-item">
+                            Two-way data binding yang powerful dan mudah dipahami
+                        </li>
+                        <li class="function-item vue-item">
+                            Dapat diintegrasikan bertahap ke proyek yang sudah ada
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="framework-card angular-card">
+                    <div class="framework-title angular-title">
+                        <div class="framework-icon angular-icon">🔺</div>
+                        Angular.js
+                    </div>
+                    <ul class="functions-list">
+                        <li class="function-item angular-item">
+                            Framework enterprise dengan tooling yang lengkap
+                        </li>
+                        <li class="function-item angular-item">
+                            MVC architecture dengan dependency injection
+                        </li>
+                        <li class="function-item angular-item">
+                            Built-in TypeScript untuk development yang type-safe
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <p class="quote-text">
+                "Setiap baris kode adalah langkah kecil menuju karya besar di galaksi digital yang tak terbatas" <span class="rocket-emoji">🚀</span>
+            </p>
+        </section>
+
+        <!-- Action Section -->
+        <section class="action-section">
+            <button class="space-button" onclick="launchToSpace()">
+                <span style="position: relative; z-index: 1;">🛸 Launch Into Space</span>
+            </button>
+        </section>
+    </div>
+
+    <script>
+        // Auto-show alert when page loads
+        window.addEventListener('load', function() {
+            alert("Muhammad Dien Syafiq");
+        });
+
+        function launchToSpace() {
+            // Show simple alert with full name first
+            alert("Muhammad Dien Syafiq");
+        }
+            // Then create space-themed modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                animation: spacePortalOpen 1s ease forwards;`
+                
+    </script>
+    
+                
+                
+
+
+                
+                
+                
+        
+        
+
+                
+                
+    
+        
