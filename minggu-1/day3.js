@@ -144,4 +144,16 @@ switch (lampu) {
     default:
         console.log("status lampu tidak valid")
         break;
+} 
+
+const nama = [
+    'budi',
+    'ani',
+    'susi',
+    'tono',
+    'rudi',
+]
+
+for (let i = 0; i < nama.length; i++) {
+    console.log("array nama ke-" + i + " isinya adalah :"+nama[i])
 }
